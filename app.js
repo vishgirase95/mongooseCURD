@@ -1,11 +1,38 @@
-const {
-    count
-} = require("console");
+
+
+
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/fruitDB", {
     useNewUrlParser: true
-});
+}).then(()=>{
+    console.log("Successfully connected to the database");
+    
+}).catch((err)=>{
+    console.log("Could not connect to the database. Exiting now...", err);
+    process.exit();
+    
+})
 
+// mongoose.connect(dbConfig.url, {
+//     useNewUrlParser: true,
+//   })
+//   .then(() => {
+//     console.log("Successfully connected to the database");
+//   })
+//   .catch((err) => {
+//     console.log("Could not connect to the database. Exiting now...", err);
+//     process.exit();
+//   });
+
+
+// // to check conncetion
+// const con=mongoose.connection;
+// con.on("open",function(){
+//    
+//     console.log("connceted to datbase");
+
+//     }
+// })
 
 const fruitSchema = new mongoose.Schema({
     name:{
@@ -67,7 +94,7 @@ const people6=new people({
     work:"dr",
     favFroot:frrot
 });
-people6.save();
+// people6.save();
 // people.insertMany([people5],function(e){
 // if(e){
 //     console.log(e);
@@ -75,7 +102,14 @@ people6.save();
 //     console.log("sucessfull saved");
 // }
 // });
-
+// people.deleteMany({name:"amy"},function(e){
+//     if(e){
+//         console.log(e);
+//     }
+//     else{
+//         console.log("deleted sucefully");
+//     }
+// })
 people.find(function(err,Allpeople){
     if(err){
         console.log(err);
